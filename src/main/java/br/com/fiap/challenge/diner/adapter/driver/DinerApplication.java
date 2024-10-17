@@ -1,4 +1,4 @@
-package br.com.fiap.challenge.diner;
+package br.com.fiap.challenge.diner.adapter.driver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
