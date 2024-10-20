@@ -2,6 +2,7 @@ package br.com.fiap.fastfood.adapter.in.controller;
 
 import br.com.fiap.fastfood.adapter.in.request.CadastrarEmpresaRequest;
 import br.com.fiap.fastfood.core.port.processor.EmpresaProcessor;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class EmpresaController {
     private final EmpresaProcessor processor;
 
     @PostMapping
-    public ResponseEntity<?> cadastrarEmpresa(@RequestBody CadastrarEmpresaRequest request) {
+    public ResponseEntity<?> cadastrarEmpresa(@RequestBody @Valid CadastrarEmpresaRequest request) {
         var response = processor.cadastrarEmpresa(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
