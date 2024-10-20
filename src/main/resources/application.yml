@@ -8,5 +8,9 @@ spring:
     url: jdbc:postgresql://localhost:5443/fast-food
     username: postgres
     password: postgres
-
+    initialization-mode: always  # Garante que o Spring execute o script
+    initialization-sql: classpath:script.sql  # Localiza o arquivo init.sql
+  jpa:
+    hibernate:
+      ddl-auto: update
 
