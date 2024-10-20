@@ -1,5 +1,6 @@
 package br.com.fiap.fastfood.core.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,7 +21,9 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "razao_social")
     private String razaoSocial;
+    @Column(name = "nome_fantasia")
     private String nomeFantasia;
     private String cnpj;
     private String ativo;
