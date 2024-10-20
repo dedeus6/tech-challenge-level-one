@@ -4,5 +4,9 @@ server:
 spring:
   application:
     name: fast-food
+  datasource:
+    url: jdbc:postgresql://localhost:5443/fast-food
+    username: postgres
+    password: postgres
 
 

@@ -1,6 +1,7 @@
 package br.com.fiap.fastfood.core.domain;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,6 +27,8 @@ public class PedidoPagamento {
     @ManyToOne
     @JoinColumn(name = "forma_pagamento_id")
     private FormaPagamento formaPagamento;
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
     @Column(name = "vlr_pagamento")
     private Double vlrPagamento = 0.0;
