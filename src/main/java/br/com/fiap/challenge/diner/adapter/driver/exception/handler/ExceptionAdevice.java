@@ -3,6 +3,7 @@ package br.com.fiap.challenge.diner.adapter.driver.exception.handler;
 import br.com.fiap.challenge.diner.adapter.driver.exception.BusinessException;
 import br.com.fiap.challenge.diner.adapter.driver.response.ErrorField;
 import br.com.fiap.challenge.diner.adapter.driver.response.ErrorResponse;
+import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -57,6 +58,29 @@ public class ExceptionAdevice {
             var error = ErrorField.builder()
                     .field(e.getField())
                     .message(e.getDefaultMessage())
+                    .build();
+            errorList.add(error);
+        });
+
+        return new ResponseEntity<>(ErrorResponse.builder()
+                .path(uri != null ? uri.substring(4) : null)
+                .timestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")))
+                .message("Erro na validação de campo")
+                .httpCode(HttpStatus.BAD_REQUEST.value())
+                .httpDescription(HttpStatus.BAD_GATEWAY.getReasonPhrase())
+                .fields(!errorList.isEmpty() ? errorList : null)
+                .build(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ErrorResponse> handleConstraintViolationException(WebRequest request, ConstraintViolationException ex) {
+        String uri = request.getDescription(false);
+
+        List<ErrorField> errorList = new ArrayList<>();
+        ex.getConstraintViolations().stream().forEach(e -> {
+            var error = ErrorField.builder()
+                    .field(String.valueOf(e.getPropertyPath().toString().split("\\.")[1]))
+                    .message(e.getMessage())
                     .build();
             errorList.add(error);
         });
