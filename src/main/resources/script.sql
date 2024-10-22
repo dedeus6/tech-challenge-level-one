@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS public.produto (
 id bigserial NOT NULL,
 descricao TEXT NOT NULL,
 vlr_unitario NUMERIC(15,2),
-codigo_barras TEXT,
 categoria_id bigint,
 CONSTRAINT produto_pkey PRIMARY KEY (id),
 CONSTRAINT fk_produto_categoria_id FOREIGN KEY (categoria_id) REFERENCES public.categoria(id)
