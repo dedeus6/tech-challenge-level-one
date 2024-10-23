@@ -1,6 +1,7 @@
 package br.com.fiap.challenge.diner.adapter.driver;
 
 import br.com.fiap.challenge.diner.adapter.driven.infra.mappers.EmpresaMapper;
+import br.com.fiap.challenge.diner.adapter.driver.request.AtualizarEmpresaRequest;
 import br.com.fiap.challenge.diner.adapter.driver.request.CadastrarEmpresaRequest;
 import br.com.fiap.challenge.diner.adapter.driver.response.EmpresaResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.ErrorResponse;
@@ -21,6 +22,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,11 +74,32 @@ public class EmpresaController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @Operation(summary = "Listar empresas")
+    @Operation(summary = "Atualizar empresa")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Listagem realizada com sucesso",
-                    //TODO: ajustar swagger list
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = EmpresaResponse.class))})})
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarEmpresaById(
+            @Parameter(description = ID)
+            @PathVariable(name = "id")
+            final Long id,
+            @RequestBody @Valid
+            final AtualizarEmpresaRequest request) {
+        var empresaDTO = mapper.toEmpresaDTO(request);
+        var response = service.atualizarEmpresaById(id, empresaDTO);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @Operation(summary = "Listar empresas")
+    //TODO: ajustar swagger
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "Listagem realizada com sucesso",
+//                    content = @Content(mediaType = "application/json",
+//                            array = @ArraySchema(schema = @Schema(implementation = PaginacaoResponse.class,
+//                                    properties = {
+//                                            @Schema(name = "items", description = "Lista de empresas",
+//                                                    implementation = EmpresaResponse.class)
+//                                    }))))})
     @GetMapping
     public ResponseEntity<?> listarEmpresas(
             @Parameter(description = PAGE)
