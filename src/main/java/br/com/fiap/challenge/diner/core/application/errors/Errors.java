@@ -17,4 +17,6 @@ public class Errors {
     //Paginação
     public static final String PAGE_MINIMA = "Página miníma é 1";
 
+    public static final String ENUM_ATIVO_INVALIDO = "O valor informado está invalido. Valores permitidos [S, N]";
+
 }

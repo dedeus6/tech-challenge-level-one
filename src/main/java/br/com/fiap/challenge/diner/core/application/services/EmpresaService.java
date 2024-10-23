@@ -33,7 +33,7 @@ public class EmpresaService {
             throw new BusinessException(EMPRESA_JA_CADASTRADA, HttpStatus.UNPROCESSABLE_ENTITY);
 
         Empresa entity = mapper.toEntity(empresaDTO);
-        entity.setAtivo(Ativo.SIM.getValor());
+        entity.setAtivo(Ativo.N.name());
         Empresa entityResponse = empresaRepository.save(entity);
         return mapper.toEmpresaResponse(entityResponse);
     }

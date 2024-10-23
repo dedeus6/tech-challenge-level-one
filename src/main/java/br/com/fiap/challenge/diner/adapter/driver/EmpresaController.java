@@ -5,9 +5,11 @@ import br.com.fiap.challenge.diner.adapter.driver.request.AtualizarEmpresaReques
 import br.com.fiap.challenge.diner.adapter.driver.request.CadastrarEmpresaRequest;
 import br.com.fiap.challenge.diner.adapter.driver.response.EmpresaResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.ErrorResponse;
+import br.com.fiap.challenge.diner.adapter.driver.response.PaginacaoResponse;
 import br.com.fiap.challenge.diner.core.application.services.EmpresaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -90,16 +92,15 @@ public class EmpresaController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    //TODO:ajustar swagger
     @Operation(summary = "Listar empresas")
-    //TODO: ajustar swagger
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "Listagem realizada com sucesso",
-//                    content = @Content(mediaType = "application/json",
-//                            array = @ArraySchema(schema = @Schema(implementation = PaginacaoResponse.class,
-//                                    properties = {
-//                                            @Schema(name = "items", description = "Lista de empresas",
-//                                                    implementation = EmpresaResponse.class)
-//                                    }))))})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Listagem de empresas com sucesso",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = PaginacaoResponse.class)
+                    )
+            )
+    })
     @GetMapping
     public ResponseEntity<?> listarEmpresas(
             @Parameter(description = PAGE)

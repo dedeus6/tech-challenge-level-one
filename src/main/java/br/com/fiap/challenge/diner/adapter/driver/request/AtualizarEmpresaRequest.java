@@ -1,5 +1,7 @@
 package br.com.fiap.challenge.diner.adapter.driver.request;
 
+import br.com.fiap.challenge.diner.adapter.driver.validations.ValueOfEnum;
+import br.com.fiap.challenge.diner.core.domain.enums.Ativo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -14,6 +16,7 @@ import static br.com.fiap.challenge.diner.core.application.description.Descripti
 import static br.com.fiap.challenge.diner.core.application.description.Descriptions.RAZAO_SOCIAL;
 import static br.com.fiap.challenge.diner.core.application.errors.Errors.CAMPO_REQUERIDO;
 import static br.com.fiap.challenge.diner.core.application.errors.Errors.CNPJ_INVALIDO;
+import static br.com.fiap.challenge.diner.core.application.errors.Errors.ENUM_ATIVO_INVALIDO;
 
 @Data
 @Builder
@@ -33,6 +36,6 @@ public class AtualizarEmpresaRequest {
     private String cnpj;
     @Schema(description = ATIVO)
     @NotBlank(message = CAMPO_REQUERIDO)
-    //TODO: validar enum
+    @ValueOfEnum(enumClass = Ativo.class, message = ENUM_ATIVO_INVALIDO)
     private String ativo;
 }
