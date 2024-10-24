@@ -81,6 +81,18 @@ public class ProdutoController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Buscar produto por id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class))})})
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoResponse> buscarEmpresaById(
+            @Parameter(description = ID)
+            @PathVariable(name = "id")
+            final Long id) {
+        return ResponseEntity.ok(produtoService.buscarProdutoById(id));
+    }
+
     @Operation(summary = "Listar produtos")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Listagem realizada com sucesso",
@@ -98,6 +110,28 @@ public class ProdutoController {
             @RequestParam(required = false, defaultValue = "DESC")
             final String sort) {
         return ResponseEntity.ok(produtoService.listarProdutos(page, limit, sort));
+    }
+
+    @Operation(summary = "Buscar produtos por categoria")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoPaginacaoResponse.class))})})
+    @GetMapping("/categoria/{categoriaId}")
+    public ResponseEntity<PaginacaoResponse<ProdutoResponse>> buscarProdutosPorCategoria(
+            @Parameter(description = PAGE)
+            @RequestParam(required = false, defaultValue = "1")
+            @Min(value = 1, message = PAGE_MINIMA)
+            final Integer page,
+            @Parameter(description = LIMIT)
+            @RequestParam(required = false, defaultValue = "25")
+            final Integer limit,
+            @Parameter(description = SORT, example = ASC_DESC)
+            @RequestParam(required = false, defaultValue = "DESC")
+            final String sort,
+            @Parameter(description = CATEGORIA_ID)
+            @PathVariable(name = "categoriaId")
+            final Long categoriaId) {
+        return ResponseEntity.ok(produtoService.buscarProdutosPorCategoria(page, limit, sort, categoriaId));
     }
 
 }

@@ -64,6 +64,18 @@ public class ProdutoService {
         produtoRepository.delete(produto);
     }
 
+    public ProdutoResponse buscarProdutoById(Long id) {
+        return produtoMapper.toProdutoResponse(getProduto(id));
+    }
+
+    public PaginacaoResponse<ProdutoResponse> buscarProdutosPorCategoria(Integer page, Integer limit, String sort, Long categoriaId) {
+        getCategoria(categoriaId);
+        var pageable = Paginacao.getPageRequest(limit, page, sort, "id");
+        var produtos = produtoRepository.findByCategoriaId(categoriaId, pageable);
+        List<ProdutoResponse> produtosResponse = produtoMapper.toResponseList(produtos.getContent());
+        return new PaginacaoResponse<ProdutoResponse>().convertToResponse(new PageImpl(produtosResponse, produtos.getPageable(), 0L));
+    }
+
     private Produto getProduto(Long id) {
         return produtoRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(PRODUTO_NAO_ENCONTRADO, UNPROCESSABLE_ENTITY));
@@ -73,4 +85,5 @@ public class ProdutoService {
         return categoriaRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(CATEGORIA_NAO_EXISTE, UNPROCESSABLE_ENTITY));
     }
+
 }
