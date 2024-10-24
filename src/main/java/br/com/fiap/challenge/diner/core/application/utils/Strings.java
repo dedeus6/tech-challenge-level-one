@@ -1,4 +1,4 @@
-package br.com.fiap.challenge.diner.core.application.Utils;
+package br.com.fiap.challenge.diner.core.application.utils;
 
 public class Strings {
 

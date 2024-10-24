@@ -23,9 +23,9 @@ public class CadastrarProdutoRequest {
 
     @NotNull(message = VLR_UNITARIO_REQUERIDO)
     @Digits(integer = 10, fraction = 2, message = VLR_UNITARIO_FORMATO_INVALIDO)
-    private BigDecimal vlr_unitario;
+    private BigDecimal vlrUnitario;
 
     @NotNull(message = CATEGORIA_ID_REQUERIDO)
-    private Integer categoria_id;
+    private Long categoriaId;
 
 }

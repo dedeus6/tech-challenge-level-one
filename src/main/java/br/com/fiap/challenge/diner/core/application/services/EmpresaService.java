@@ -4,7 +4,7 @@ import br.com.fiap.challenge.diner.adapter.driven.infra.mappers.EmpresaMapper;
 import br.com.fiap.challenge.diner.adapter.driver.exception.BusinessException;
 import br.com.fiap.challenge.diner.adapter.driver.response.EmpresaResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.PaginacaoResponse;
-import br.com.fiap.challenge.diner.core.application.Utils.Paginacao;
+import br.com.fiap.challenge.diner.core.application.utils.Paginacao;
 import br.com.fiap.challenge.diner.core.application.ports.EmpresaRepository;
 import br.com.fiap.challenge.diner.core.domain.dto.EmpresaDTO;
 import br.com.fiap.challenge.diner.core.domain.entities.Empresa;
