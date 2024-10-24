@@ -1,5 +1,6 @@
 package br.com.fiap.challenge.diner.adapter.driver.request;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+import static br.com.fiap.challenge.diner.core.application.description.Descriptions.*;
 import static br.com.fiap.challenge.diner.core.application.errors.Errors.*;
 
 @Data
@@ -18,13 +20,16 @@ import static br.com.fiap.challenge.diner.core.application.errors.Errors.*;
 @AllArgsConstructor
 public class CadastrarProdutoRequest {
 
+    @Schema(description = DESCRICAO_PRODUTO)
     @NotBlank(message = DESCRICAO_REQUERIDO)
     private String descricao;
 
+    @Schema(description = VLR_UNITARIO_PRODUTO)
     @NotNull(message = VLR_UNITARIO_REQUERIDO)
     @Digits(integer = 10, fraction = 2, message = VLR_UNITARIO_FORMATO_INVALIDO)
     private BigDecimal vlrUnitario;
 
+    @Schema(description = CATEGORIA_ID)
     @NotNull(message = CATEGORIA_ID_REQUERIDO)
     private Long categoriaId;
 

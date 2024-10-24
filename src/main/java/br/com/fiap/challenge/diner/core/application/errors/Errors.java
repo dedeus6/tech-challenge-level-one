@@ -14,6 +14,7 @@ public class Errors {
     public static final String VLR_UNITARIO_REQUERIDO = "Campo vlr_unitario é requerido";
     public static final String CATEGORIA_ID_REQUERIDO = "Campo categoria_id é requerido";
     public static final String CATEGORIA_NAO_EXISTE = "A categoria informada não existe";
+    public static final String PRODUTO_NAO_ENCONTRADO = "Produto não encontrado";
 
     //Paginação
     public static final String PAGE_MINIMA = "Página miníma é 1";
