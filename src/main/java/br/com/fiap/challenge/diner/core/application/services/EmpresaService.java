@@ -44,7 +44,17 @@ public class EmpresaService {
         return mapper.toEmpresaResponse(empresa);
     }
 
-    public Object listarEmpresas(Integer page, Integer limit, String sort) {
+    public EmpresaResponse atualizarEmpresaById(Long id, EmpresaDTO empresaDTO) {
+        empresaRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(EMPRESA_NAO_ENCONTRADA, HttpStatus.UNPROCESSABLE_ENTITY));
+
+        Empresa entity = mapper.toEntity(empresaDTO);
+        entity.setId(id);
+        Empresa entityResponse = empresaRepository.save(entity);
+        return mapper.toEmpresaResponse(entityResponse);
+    }
+
+    public PaginacaoResponse<EmpresaResponse> listarEmpresas(Integer page, Integer limit, String sort) {
         var pageable = Paginacao.getPageRequest(limit, page, sort, "id");
         var empresas = empresaRepository.findAll(pageable);
         List<EmpresaResponse> empresasResponse = mapper.toResponseList(empresas.getContent());

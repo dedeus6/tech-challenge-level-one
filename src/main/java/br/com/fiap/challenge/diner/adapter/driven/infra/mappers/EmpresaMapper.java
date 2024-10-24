@@ -1,5 +1,6 @@
 package br.com.fiap.challenge.diner.adapter.driven.infra.mappers;
 
+import br.com.fiap.challenge.diner.adapter.driver.request.AtualizarEmpresaRequest;
 import br.com.fiap.challenge.diner.adapter.driver.request.CadastrarEmpresaRequest;
 import br.com.fiap.challenge.diner.adapter.driver.response.EmpresaResponse;
 import br.com.fiap.challenge.diner.core.domain.dto.EmpresaDTO;
@@ -15,6 +16,8 @@ public interface EmpresaMapper {
     EmpresaMapper INSTANCE = Mappers.getMapper(EmpresaMapper.class);
 
     EmpresaDTO toEmpresaDTO(CadastrarEmpresaRequest request);
+
+    EmpresaDTO toEmpresaDTO(AtualizarEmpresaRequest request);
 
     Empresa toEntity(EmpresaDTO empresaDTO);
 
