@@ -5,6 +5,7 @@ import br.com.fiap.challenge.diner.adapter.driver.request.AtualizarEmpresaReques
 import br.com.fiap.challenge.diner.adapter.driver.request.CadastrarEmpresaRequest;
 import br.com.fiap.challenge.diner.adapter.driver.response.EmpresaResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.ErrorResponse;
+import br.com.fiap.challenge.diner.adapter.driver.response.PaginacaoEmpresaResponse;
 import br.com.fiap.challenge.diner.core.application.services.EmpresaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -91,15 +92,9 @@ public class EmpresaController {
     }
 
     @Operation(summary = "Listar empresas")
-    //TODO: ajustar swagger
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "Listagem realizada com sucesso",
-//                    content = @Content(mediaType = "application/json",
-//                            array = @ArraySchema(schema = @Schema(implementation = PaginacaoResponse.class,
-//                                    properties = {
-//                                            @Schema(name = "items", description = "Lista de empresas",
-//                                                    implementation = EmpresaResponse.class)
-//                                    }))))})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Listagem realizada com sucesso",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PaginacaoEmpresaResponse.class))})})
     @GetMapping
     public ResponseEntity<?> listarEmpresas(
             @Parameter(description = PAGE)
