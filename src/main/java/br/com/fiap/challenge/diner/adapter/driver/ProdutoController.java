@@ -5,7 +5,7 @@ import br.com.fiap.challenge.diner.adapter.driver.request.AtualizarProdutoReques
 import br.com.fiap.challenge.diner.adapter.driver.request.CadastrarProdutoRequest;
 import br.com.fiap.challenge.diner.adapter.driver.response.ErrorResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.PaginacaoResponse;
-import br.com.fiap.challenge.diner.adapter.driver.response.ProdutoPaginacaoResponse;
+import br.com.fiap.challenge.diner.adapter.driver.response.PaginacaoProdutoResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.ProdutoResponse;
 import br.com.fiap.challenge.diner.core.application.services.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -71,7 +71,7 @@ public class ProdutoController {
     @Operation(summary = "Deletar produto")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Deleção realizada com sucesso",
-                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class))})})
+                    content = {@Content(mediaType = "application/json")})})
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletaProduto(
             @Parameter(description = ID)
@@ -96,7 +96,7 @@ public class ProdutoController {
     @Operation(summary = "Listar produtos")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Listagem realizada com sucesso",
-                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoPaginacaoResponse.class))})})
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PaginacaoProdutoResponse.class))})})
     @GetMapping("/list")
     public ResponseEntity<PaginacaoResponse<ProdutoResponse>> listarProdutos(
             @Parameter(description = PAGE)
@@ -115,7 +115,7 @@ public class ProdutoController {
     @Operation(summary = "Buscar produtos por categoria")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
-                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoPaginacaoResponse.class))})})
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PaginacaoProdutoResponse.class))})})
     @GetMapping("/categoria/{categoriaId}")
     public ResponseEntity<PaginacaoResponse<ProdutoResponse>> buscarProdutosPorCategoria(
             @Parameter(description = PAGE)
