@@ -18,7 +18,7 @@ import static br.com.fiap.challenge.diner.core.application.errors.Errors.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CadastrarProdutoRequest {
+public class AtualizarProdutoRequest {
 
     @Schema(description = DESCRICAO_PRODUTO)
     @NotBlank(message = DESCRICAO_REQUERIDO)

@@ -16,9 +16,21 @@ public class Descriptions {
     public static final String RAZAO_SOCIAL = "Razão social";
     public static final String NOME_FANTANSIA = "Nome fantasia";
     public static final String CNPJ = "Cnpj";
-    public static final String ID = "Identificador";
+    public static final String ID = "Identificador único";
     public static final String ATIVO = "Indicador ativo. Permitido (S=SIM/N=NAO)";
     public static final String PAGE = "Número da página";
     public static final String LIMIT = "Quantidade de registros para obter por página";
     public static final String SORT = "Ordenação da listagem";
+    public static final String DESCRICAO_PRODUTO = "Descrição do produto";
+    public static final String DESCRICAO_CATEGORIA = "Descrição da categoria";
+    public static final String VLR_UNITARIO_PRODUTO = "Valor unitário do produto";
+    public static final String CATEGORIA_PRODUTO = "Categoria associada ao produto";
+    public static final String CATEGORIA_ID = "Identificar único da categoria";
+
+    // Paginação
+    public static final String HAS_NEXT = "Indica se existe uma próxima página com elementos";
+    public static final String HAS_PREVIOUS = "Indica se existe uma página anterior";
+    public static final String PAGE_NUMBER = "Indica o número da página atual";
+    public static final String PAGE_SIZE = "Indica a quantidade de elementos na página atual";
+    public static final String ITEMS = "Lista de items da página";
 }

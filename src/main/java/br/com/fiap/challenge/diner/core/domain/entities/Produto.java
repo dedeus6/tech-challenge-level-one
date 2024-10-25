@@ -27,8 +27,6 @@ public class Produto {
     private String descricao;
     @Column(name = "vlr_unitario")
     private String vlrUnitario;
-    @Column(name = "codigo_barras")
-    private String codigoBarras;
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
