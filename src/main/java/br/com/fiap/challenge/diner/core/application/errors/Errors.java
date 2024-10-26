@@ -17,6 +17,12 @@ public class Errors {
     public static final String CLIENTE_EXISTE = "O CPF informado já existe cadastrado";
     public static final String CLIENTE_NAO_EXISTE = "Cliente não encontrado";
     public static final String PRODUTO_NAO_ENCONTRADO = "Produto não encontrado";
+    public static final String PEDIDO_NAO_ENCONTRADO = "Pedido não encontrado";
+    public static final String FORMA_PAGAMENTO_NAO_ENCONTRADO = "Forma de pagamento não encontrada";
+
+    //PEDIDO
+    public static final String PEDIDO_VALOR_TOTAL_ZERO = "Pedido possuí valor para pagamento zerado";
+    public static final String FORMA_PAGAMENTO_NAO_DISPONIVEL = "Forma de pagamento não está disponível";
 
     //Paginação
     public static final String PAGE_MINIMA = "Página miníma é 1";
@@ -24,6 +30,8 @@ public class Errors {
     // Cliente
     public static final String CLIENTE_NAO_ENCONTRADO = "Cliente não encontrado";
 
+    //ENUMS
     public static final String ENUM_ATIVO_INVALIDO = "O valor informado está invalido. Valores permitidos [S, N]";
+    public static final String ENUM_TIPO_PAGAMNETO_INVALIDO = "O valor informado está invalido. Valores permitidos [DEBITO, CREDITO, PIX]";
 
 }
