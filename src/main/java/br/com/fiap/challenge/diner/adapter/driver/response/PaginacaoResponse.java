@@ -21,16 +21,12 @@ public class PaginacaoResponse<T> {
 
     @Schema(description = HAS_NEXT)
     private Boolean hasNext;
-
     @Schema(description = HAS_PREVIOUS)
     private Boolean hasPrevious;
-
     @Schema(description = PAGE_NUMBER)
     private Integer pageNumber;
-
     @Schema(description = PAGE_SIZE)
     private Integer pageSize;
-
     @Schema(description = ITEMS)
     private List<T> items;
 

@@ -30,6 +30,7 @@ public class Descriptions {
     public static final String VLR_UNITARIO_PRODUTO = "Valor unitário do produto";
     public static final String CATEGORIA_PRODUTO = "Categoria associada ao produto";
     public static final String CATEGORIA_ID = "Identificar único da categoria";
+    public static final String IMAGEM_PRODUTO = "Imagem para mostrar o produto";
 
     // Paginação
     public static final String HAS_NEXT = "Indica se existe uma próxima página com elementos";

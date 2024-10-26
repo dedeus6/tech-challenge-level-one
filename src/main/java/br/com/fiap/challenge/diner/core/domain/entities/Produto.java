@@ -30,4 +30,5 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+    private String imagem;
 }

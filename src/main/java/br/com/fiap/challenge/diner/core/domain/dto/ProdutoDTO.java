@@ -17,5 +17,5 @@ public class ProdutoDTO {
     private String descricao;
     private BigDecimal vlrUnitario;
     private Long categoriaId;
-
+    private String imagem;
 }

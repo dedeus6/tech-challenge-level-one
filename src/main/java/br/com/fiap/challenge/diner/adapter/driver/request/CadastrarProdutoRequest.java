@@ -23,14 +23,14 @@ public class CadastrarProdutoRequest {
     @Schema(description = DESCRICAO_PRODUTO)
     @NotBlank(message = CAMPO_REQUERIDO)
     private String descricao;
-
     @Schema(description = VLR_UNITARIO_PRODUTO)
     @NotNull(message = CAMPO_REQUERIDO)
     @Digits(integer = 10, fraction = 2, message = VLR_UNITARIO_FORMATO_INVALIDO)
     private BigDecimal vlrUnitario;
-
     @Schema(description = CATEGORIA_ID)
     @NotNull(message = CAMPO_REQUERIDO)
     private Long categoriaId;
-
+    @Schema(description = IMAGEM_PRODUTO)
+    @NotNull(message = CAMPO_REQUERIDO)
+    private String imagem;
 }

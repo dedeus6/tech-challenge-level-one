@@ -19,8 +19,6 @@ public class CategoriaResponse {
 
     @Schema(description = ID)
     private Long id;
-
     @Schema(description = DESCRICAO_CATEGORIA)
     private String descricao;
-
 }
