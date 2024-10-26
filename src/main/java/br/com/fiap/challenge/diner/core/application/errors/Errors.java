@@ -23,6 +23,7 @@ public class Errors {
     //PEDIDO
     public static final String PEDIDO_VALOR_TOTAL_ZERO = "Pedido possuí valor para pagamento zerado";
     public static final String FORMA_PAGAMENTO_NAO_DISPONIVEL = "Forma de pagamento não está disponível";
+    public static final String PEDIDO_STATUS_DIFERENTE_RECEBIDO = "Status do pedido é diferente de recebido";
 
     //Paginação
     public static final String PAGE_MINIMA = "Página miníma é 1";

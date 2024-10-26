@@ -31,7 +31,17 @@ public class PedidoPagamento {
     @Column(name = "vlr_pagamento")
     private Double vlrPagamento = 0.0;
 
+    @Column(name = "identificador_pagamento")
+    private String identificadorPagamento;
+
     private String status;
 
-    private String identificadorPagamento;
+    public String getStatusStr() {
+        return switch (this.getStatus()) {
+            case "P" -> "PEDENTE";
+            case "C" -> "CONFIRMADO";
+            case "R" -> "RECUSADO";
+            default -> "INVÁLIDO";
+        };
+    }
 }

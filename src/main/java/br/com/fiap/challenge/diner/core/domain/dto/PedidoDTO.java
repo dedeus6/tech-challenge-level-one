@@ -25,7 +25,7 @@ public class PedidoDTO {
     private Long empresaId;
 
     @Builder.Default
-    private String status = "RECEBIDO";
+    private String status = "R";
 
     @Builder.Default
     private List<ItemDTO> itens = new ArrayList<>();

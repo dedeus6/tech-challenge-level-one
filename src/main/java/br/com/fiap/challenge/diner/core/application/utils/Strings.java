@@ -25,4 +25,38 @@ public class Strings {
             return a != b;
         }
     }
+
+    public static boolean containsAny(String text, String... parts) {
+        if (text != null) {
+            String value = text.toLowerCase();
+            for (String part : parts) {
+                if (part != null) {
+                    if (value.contains(part.toLowerCase())) return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean in(String value, String... items) {
+        return isAnyEquals(value, items);
+    }
+
+    public static boolean isAnyEquals(String value, String... items) {
+        for (String item : items) {
+            if (equals(value, item)) return true;
+        }
+        return false;
+    }
+
+    public static boolean notIn(String value, String... items) {
+        return isAllDiff(value, items);
+    }
+
+    public static boolean isAllDiff(String value, String... items) {
+        for (String item : items) {
+            if (equals(value, item)) return false;
+        }
+        return true;
+    }
 }

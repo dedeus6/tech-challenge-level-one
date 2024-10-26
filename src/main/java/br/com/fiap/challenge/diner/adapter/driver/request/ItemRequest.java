@@ -22,5 +22,4 @@ public class ItemRequest {
 
     @Schema(description = VLR_UNITARIO_PRODUTO)
     private Double vlrUnitario;
-
 }

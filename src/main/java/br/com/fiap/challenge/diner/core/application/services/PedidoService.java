@@ -3,7 +3,11 @@ package br.com.fiap.challenge.diner.core.application.services;
 import br.com.fiap.challenge.diner.adapter.driven.infra.mappers.PedidoMapper;
 import br.com.fiap.challenge.diner.adapter.driver.exception.BusinessException;
 import br.com.fiap.challenge.diner.adapter.driver.response.PedidoResponse;
-import br.com.fiap.challenge.diner.core.application.ports.*;
+import br.com.fiap.challenge.diner.core.application.ports.ClienteRepository;
+import br.com.fiap.challenge.diner.core.application.ports.EmpresaRepository;
+import br.com.fiap.challenge.diner.core.application.ports.PedidoItemRepository;
+import br.com.fiap.challenge.diner.core.application.ports.PedidoRepository;
+import br.com.fiap.challenge.diner.core.application.ports.ProdutoRepository;
 import br.com.fiap.challenge.diner.core.domain.dto.ItemDTO;
 import br.com.fiap.challenge.diner.core.domain.dto.PedidoDTO;
 import br.com.fiap.challenge.diner.core.domain.entities.Cliente;
@@ -15,8 +19,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.com.fiap.challenge.diner.core.application.errors.Errors.*;
-import static java.util.Objects.nonNull;
+import static br.com.fiap.challenge.diner.core.application.errors.Errors.CLIENTE_NAO_ENCONTRADO;
+import static br.com.fiap.challenge.diner.core.application.errors.Errors.EMPRESA_NAO_ENCONTRADA;
+import static br.com.fiap.challenge.diner.core.application.errors.Errors.PRODUTO_NAO_ENCONTRADO;
+import static br.com.fiap.challenge.diner.core.application.utils.Numbers.isEmpty;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 @Service
@@ -33,7 +39,7 @@ public class PedidoService {
 
     public PedidoResponse cadastrarPedido(PedidoDTO pedidoDTO) {
         var empresa = getEmpresa(pedidoDTO.getEmpresaId());
-        var cliente = nonNull(pedidoDTO.getClienteId()) ? getCliente(pedidoDTO.getClienteId()) : null;
+        var cliente = isEmpty(pedidoDTO.getClienteId()) ? getCliente(pedidoDTO.getClienteId()) : null;
 
         var pedido = pedidoMapper.toPedidoEntidade(pedidoDTO);
         pedido.setEmpresa(empresa);

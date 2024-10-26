@@ -65,14 +65,14 @@ id bigserial NOT NULL,
 forma_pagamento_id bigint NOT NULL,
 pedido_id bigint NOT NULL,
 vlr_pagamento NUMERIC(12,2) NOT NULL,
-status TEXT NOT NULL DEFAULT 'PENDENTE',
-observacao TEXT,
+identificador_pagamento TEXT,
+status TEXT NOT NULL DEFAULT 'P',
 CONSTRAINT pedido_pagamento_pkey PRIMARY KEY (id),
 CONSTRAINT fk_pedido_pagamento_forma_pagamento_id FOREIGN KEY (forma_pagamento_id) REFERENCES public.forma_pagamento(id),
 CONSTRAINT fk_pedido_pagamento_pedido_id FOREIGN KEY (pedido_id) REFERENCES public.pedido(id)
 );
 
-COMMENT ON COLUMN public.pedido_pagamento.status IS 'PENDENTE/CONFIRMADO/RECUSADO';
+COMMENT ON COLUMN public.pedido_pagamento.status IS 'P=PENDENTE/C=CONFIRMADO/R=RECUSADO';
 
 CREATE TABLE IF NOT EXISTS public.pedido_item (
 id bigserial NOT NULL,

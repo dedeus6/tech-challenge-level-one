@@ -1,5 +1,6 @@
 package br.com.fiap.challenge.diner.core.domain.entities;
 
+import br.com.fiap.challenge.diner.core.application.utils.Numbers;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,10 +69,36 @@ public class Pedido {
         return item;
     }
 
-    public Double calculaVlrTotal() {
-        this.vlrTotal = this.itens.stream()
+    public void calculaVlrTotal() {
+        var valor = BigDecimal.valueOf(this.itens.stream()
                 .mapToDouble(item -> item.getVlrUnitario() * item.getQtdProduto())
-                .sum();
-        return this.vlrTotal;
+                .sum()).setScale(2, RoundingMode.HALF_UP);
+
+        this.vlrTotal = Numbers.parseDouble(valor, 0.0);
+    }
+
+    public String getStatusStr() {
+        return switch (this.status) {
+            case "R" -> "RECEBIDO";
+            case "E" -> "EM PREPARAÇÃO";
+            case "P" -> "PRONTO";
+            case "F" -> "FINALIZADO";
+            default -> "INVÁLIDO";
+        };
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", data=" + data +
+                ", empresa=" + empresa +
+                ", cliente=" + cliente +
+                ", vlrTotal=" + vlrTotal +
+                ", status='" + status + '\'' +
+                ", pagamentos=" + pagamentos +
+                ", itens=" + itens +
+                ", observacao='" + observacao + '\'' +
+                '}';
     }
 }

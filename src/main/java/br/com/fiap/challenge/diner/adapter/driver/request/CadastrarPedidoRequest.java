@@ -27,5 +27,4 @@ public class CadastrarPedidoRequest {
 
     @Schema(description = OBSERVACAO)
     private String observacao;
-
 }
