@@ -30,6 +30,7 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    private Double vlrTotal = 0.0;
     private String status;
     @OrderBy("id")
     @Fetch(FetchMode.SELECT)
