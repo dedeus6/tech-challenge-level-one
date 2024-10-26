@@ -21,7 +21,7 @@ COMMENT ON COLUMN public.forma_pagamento.tipo_pagamento IS 'AVISTA/DEBITO/CREDIT
 CREATE TABLE IF NOT EXISTS public.cliente (
 id bigserial NOT NULL,
 nome TEXT NOT NULL,
-cnpj TEXT NOT NULL,
+cpf TEXT NOT NULL,
 telefone TEXT,
 email TEXT,
 CONSTRAINT cliente_pkey PRIMARY KEY (id)
@@ -57,7 +57,6 @@ CONSTRAINT fk_pedido_cliente_id FOREIGN KEY (cliente_id) REFERENCES public.clien
 );
 
 COMMENT ON COLUMN public.pedido.status IS 'R=RECEBIDO/E=EM PREPARAÇÃO/P=PRONTO/F=FINALIZADO';
-
 
 CREATE TABLE IF NOT EXISTS public.pedido_pagamento (
 id bigserial NOT NULL,
