@@ -25,4 +25,9 @@ public class Cliente {
     private String cpf;
     private String telefone;
     private String email;
+
+    @Override
+    public String toString() {
+        return "Id " + id;
+    }
 }

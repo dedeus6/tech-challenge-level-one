@@ -22,4 +22,9 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descricao;
+
+    @Override
+    public String toString() {
+        return "Id " + id;
+    }
 }

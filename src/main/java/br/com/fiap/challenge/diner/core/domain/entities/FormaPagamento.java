@@ -25,4 +25,9 @@ public class FormaPagamento {
     private String descricao;
     @Column(name = "tipo_pagamento")
     private String tipoPagamento;
+
+    @Override
+    public String toString() {
+        return "Id " + id;
+    }
 }

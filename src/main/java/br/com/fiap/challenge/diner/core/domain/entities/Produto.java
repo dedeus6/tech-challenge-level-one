@@ -24,4 +24,9 @@ public class Produto {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
     private String imagem;
+
+    @Override
+    public String toString() {
+        return "Id=" + id;
+    }
 }

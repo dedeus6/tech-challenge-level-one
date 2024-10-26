@@ -44,4 +44,9 @@ public class PedidoPagamento {
             default -> "INVÁLIDO";
         };
     }
+
+    @Override
+    public String toString() {
+        return "Id " + id;
+    }
 }

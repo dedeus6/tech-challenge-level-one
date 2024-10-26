@@ -28,4 +28,9 @@ public class Empresa {
     private String nomeFantasia;
     private String cnpj;
     private String ativo;
+
+    @Override
+    public String toString() {
+        return "Id " + id;
+    }
 }
