@@ -37,7 +37,7 @@ public class PedidoController {
 
     private final PedidoService service;
     private final PedidoMapper mapper;
-    //TODO: ajustar
+
     @Operation(summary = "Realizar Pedido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Pedido realizado com sucesso",

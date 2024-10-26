@@ -23,6 +23,10 @@ public class Descriptions {
     public static final String SORT = "Ordenação da listagem";
     public static final String DESCRICAO_PRODUTO = "Descrição do produto";
     public static final String DESCRICAO_CATEGORIA = "Descrição da categoria";
+    public static final String ID_PRODUTO = "Identificador único do produto";
+    public static final String ID_CLIENTE = "Identificador único do cliente";
+    public static final String ID_EMPRESA = "Identificador único da empresa";
+    public static final String OBSERVACAO = "Campo livre para observações do pedido";
     public static final String NOME_CLIENTE = "Nome do cliente";
     public static final String CPF_CLIENTE = "CPF do cliente";
     public static final String TELEFONE_CLIENTE = "Número telefone";
@@ -33,6 +37,13 @@ public class Descriptions {
     public static final String IMAGEM_PRODUTO = "Imagem para mostrar o produto";
     public static final String DESCRICAO_FORMA_PAGAMENTO = "Descrição forma de pagamento";
     public static final String TIPO_PAGAMENTO_FORMA_PAGAMENTO = "Tipo forma de pagamento. Valores permitidos [\"DEBITO\", \"CREDITO\", \"PIX\"]";
+    public static final String LISTA_ITENS_PEDIDO = "Lista de itens do pedido";
+    public static final String QTD_PRODUTO = "Quantidade de produtos";
+    public static final String DATA_PEDIDO = "Data de quanto o pedido foi realizado. Formato: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    public static final String BLOCO_EMPRESA = "Bloco de informações da empresa";
+    public static final String BLOCO_CLIENTE = "Bloco de informações do cliente";
+    public static final String VLR_TOTAL = "Valor total do pedido";
+    public static final String STATUS_PEDIDO = "Status do pedido. Disponíveis: RECEBIDO, EM_PREPARACAO, PRONTO, FINALIZADO";
 
     // Paginação
     public static final String HAS_NEXT = "Indica se existe uma próxima página com elementos";
