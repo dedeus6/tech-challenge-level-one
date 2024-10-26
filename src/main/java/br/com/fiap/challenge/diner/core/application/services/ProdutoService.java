@@ -32,13 +32,12 @@ public class ProdutoService {
         var categoria = categoriaRepository.findById(produto.getCategoriaId());
 
         return categoria.map(c -> {
-            var entidade = produtoMapper.toProdutoEntitie(produto);
+            var entidade = produtoMapper.toEntity(produto);
             entidade.setCategoria(categoria.get());
             var entityResponse = produtoRepository.save(entidade);
 
             return produtoMapper.toProdutoResponse(entityResponse);
         }).orElseThrow(() -> new BusinessException(CATEGORIA_NAO_EXISTE, UNPROCESSABLE_ENTITY));
-
     }
 
     public PaginacaoResponse<ProdutoResponse> listarProdutos(Integer page, Integer limit, String sort) {
@@ -52,7 +51,7 @@ public class ProdutoService {
         getProduto(id);
         var categoria = getCategoria(produtoDTO.getCategoriaId());
 
-        Produto entity = produtoMapper.toProdutoEntitie(produtoDTO);
+        Produto entity = produtoMapper.toEntity(produtoDTO);
         entity.setId(id);
         entity.setCategoria(categoria);
         Produto entityResponse = produtoRepository.save(entity);
@@ -69,7 +68,6 @@ public class ProdutoService {
     }
 
     public PaginacaoResponse<ProdutoResponse> buscarProdutosPorCategoria(Integer page, Integer limit, String sort, Long categoriaId) {
-        getCategoria(categoriaId);
         var pageable = Paginacao.getPageRequest(limit, page, sort, "id");
         var produtos = produtoRepository.findByCategoriaId(categoriaId, pageable);
         List<ProdutoResponse> produtosResponse = produtoMapper.toResponseList(produtos.getContent());

@@ -55,7 +55,7 @@ public class CategoriaController {
             @ApiResponse(responseCode = "200", description = "Atualização realizada com sucesso",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = CategoriaResponse.class))})})
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaResponse> atualizarProduto(
+    public ResponseEntity<CategoriaResponse> atualizarCategoria(
             @Parameter(description = ID)
             @PathVariable(name = "id")
             final Long id,
@@ -70,7 +70,7 @@ public class CategoriaController {
             @ApiResponse(responseCode = "204", description = "Deleção realizada com sucesso",
                     content = {@Content(mediaType = "application/json")})})
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletaProduto(
+    public ResponseEntity<Void> deletaCategoria(
             @Parameter(description = ID)
             @PathVariable(name = "id")
             final Long id) {
@@ -83,7 +83,7 @@ public class CategoriaController {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = CategoriaResponse.class))})})
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaResponse> buscarEmpresaById(
+    public ResponseEntity<CategoriaResponse> buscarCategoriaById(
             @Parameter(description = ID)
             @PathVariable(name = "id")
             final Long id) {

@@ -13,15 +13,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EmpresaMapper {
 
-    EmpresaMapper INSTANCE = Mappers.getMapper(EmpresaMapper.class);
-
     EmpresaDTO toEmpresaDTO(CadastrarEmpresaRequest request);
-
     EmpresaDTO toEmpresaDTO(AtualizarEmpresaRequest request);
-
     Empresa toEntity(EmpresaDTO empresaDTO);
-
     EmpresaResponse toEmpresaResponse(Empresa empresa);
-
     List<EmpresaResponse> toResponseList(List<Empresa> empresas);
 }

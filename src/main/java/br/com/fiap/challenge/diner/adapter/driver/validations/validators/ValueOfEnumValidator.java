@@ -1,7 +1,7 @@
 package br.com.fiap.challenge.diner.adapter.driver.validations.validators;
 
 import br.com.fiap.challenge.diner.adapter.driver.validations.ValueOfEnum;
-import br.com.fiap.challenge.diner.core.application.Utils.Strings;
+import br.com.fiap.challenge.diner.core.application.utils.Strings;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

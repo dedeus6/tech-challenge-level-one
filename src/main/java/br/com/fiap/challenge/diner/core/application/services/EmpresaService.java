@@ -39,9 +39,9 @@ public class EmpresaService {
     }
 
     public EmpresaResponse buscarEmpresaById(Long id) {
-        var empresa = empresaRepository.findById(id)
+        var entity = empresaRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(EMPRESA_NAO_ENCONTRADA, HttpStatus.UNPROCESSABLE_ENTITY));
-        return mapper.toEmpresaResponse(empresa);
+        return mapper.toEmpresaResponse(entity);
     }
 
     public EmpresaResponse atualizarEmpresaById(Long id, EmpresaDTO empresaDTO) {

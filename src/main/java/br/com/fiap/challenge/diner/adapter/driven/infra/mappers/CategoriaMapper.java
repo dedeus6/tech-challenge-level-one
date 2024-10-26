@@ -14,8 +14,7 @@ public interface CategoriaMapper {
 
     CategoriaDTO toCategoriaDto(CadastrarCategoriaRequest request);
     CategoriaDTO toCategoriaDto(AtualizarCategoriaRequest request);
-    Categoria toCategoriaEntitie(CategoriaDTO categoriaDTO);
+    Categoria toEntity(CategoriaDTO categoriaDTO);
     CategoriaResponse toCategoriaResponse(Categoria categoria);
     List<CategoriaResponse> toResponseList(List<Categoria> categorias);
-
 }

@@ -86,7 +86,7 @@ public class ProdutoController {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class))})})
     @GetMapping("/{id}")
-    public ResponseEntity<ProdutoResponse> buscarEmpresaById(
+    public ResponseEntity<ProdutoResponse> buscarProdutoById(
             @Parameter(description = ID)
             @PathVariable(name = "id")
             final Long id) {

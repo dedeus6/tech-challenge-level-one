@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import static br.com.fiap.challenge.diner.core.application.description.Descriptions.DESCRICAO_CATEGORIA;
-import static br.com.fiap.challenge.diner.core.application.errors.Errors.DESCRICAO_REQUERIDO;
+import static br.com.fiap.challenge.diner.core.application.errors.Errors.CAMPO_REQUERIDO;
 
 @Data
 @Builder
@@ -17,7 +17,7 @@ import static br.com.fiap.challenge.diner.core.application.errors.Errors.DESCRIC
 public class CadastrarCategoriaRequest {
 
     @Schema(description = DESCRICAO_CATEGORIA)
-    @NotBlank(message = DESCRICAO_REQUERIDO)
+    @NotBlank(message = CAMPO_REQUERIDO)
     private String descricao;
 
 }

@@ -21,16 +21,16 @@ import static br.com.fiap.challenge.diner.core.application.errors.Errors.*;
 public class AtualizarProdutoRequest {
 
     @Schema(description = DESCRICAO_PRODUTO)
-    @NotBlank(message = DESCRICAO_REQUERIDO)
+    @NotBlank(message = CAMPO_REQUERIDO)
     private String descricao;
 
     @Schema(description = VLR_UNITARIO_PRODUTO)
-    @NotNull(message = VLR_UNITARIO_REQUERIDO)
+    @NotNull(message = CAMPO_REQUERIDO)
     @Digits(integer = 10, fraction = 2, message = VLR_UNITARIO_FORMATO_INVALIDO)
     private BigDecimal vlrUnitario;
 
     @Schema(description = CATEGORIA_ID)
-    @NotNull(message = CATEGORIA_ID_REQUERIDO)
+    @NotNull(message = CAMPO_REQUERIDO)
     private Long categoriaId;
 
 }

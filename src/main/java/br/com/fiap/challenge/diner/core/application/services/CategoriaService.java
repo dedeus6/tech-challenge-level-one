@@ -26,24 +26,24 @@ public class CategoriaService {
     private final CategoriaMapper categoriaMapper;
 
     public CategoriaResponse cadastrarCategoria(CategoriaDTO categoria) {
-        var entidade = categoriaMapper.toCategoriaEntitie(categoria);
-        var entityResponse = categoriaRepository.save(entidade);
+        var entity = categoriaMapper.toEntity(categoria);
+        var entityResponse = categoriaRepository.save(entity);
 
         return categoriaMapper.toCategoriaResponse(entityResponse);
 
     }
 
     public CategoriaResponse atualizaCategoria(Long id, CategoriaDTO categoria) {
-        var categoriaEntitie = getCategoria(id);
-        categoriaEntitie.setId(id);
-        categoriaEntitie.setDescricao(categoria.getDescricao());
-        Categoria entityResponse = categoriaRepository.save(categoriaEntitie);
+        var entity = getCategoria(id);
+        entity.setId(id);
+        entity.setDescricao(categoria.getDescricao());
+        Categoria entityResponse = categoriaRepository.save(entity);
         return categoriaMapper.toCategoriaResponse(entityResponse);
     }
 
     public void deletarCategoria(Long id) {
-        var categoria = getCategoria(id);
-        categoriaRepository.delete(categoria);
+        var entity = getCategoria(id);
+        categoriaRepository.delete(entity);
     }
 
     public CategoriaResponse buscarCategoriaById(Long id) {

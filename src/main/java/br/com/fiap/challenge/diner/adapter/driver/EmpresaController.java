@@ -95,7 +95,7 @@ public class EmpresaController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Listagem realizada com sucesso",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PaginacaoEmpresaResponse.class))})})
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<?> listarEmpresas(
             @Parameter(description = PAGE)
             @RequestParam(required = false, defaultValue = "1")

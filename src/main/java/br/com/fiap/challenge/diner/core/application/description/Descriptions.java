@@ -23,6 +23,10 @@ public class Descriptions {
     public static final String SORT = "Ordenação da listagem";
     public static final String DESCRICAO_PRODUTO = "Descrição do produto";
     public static final String DESCRICAO_CATEGORIA = "Descrição da categoria";
+    public static final String NOME_CLIENTE = "Nome do cliente";
+    public static final String CPF_CLIENTE = "CPF do cliente";
+    public static final String TELEFONE_CLIENTE = "Número telefone";
+    public static final String EMAIL_CLIENTE = "E-mail telefone";
     public static final String VLR_UNITARIO_PRODUTO = "Valor unitário do produto";
     public static final String CATEGORIA_PRODUTO = "Categoria associada ao produto";
     public static final String CATEGORIA_ID = "Identificar único da categoria";
