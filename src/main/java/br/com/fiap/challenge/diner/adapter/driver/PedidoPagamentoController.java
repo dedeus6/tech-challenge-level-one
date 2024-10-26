@@ -2,10 +2,9 @@ package br.com.fiap.challenge.diner.adapter.driver;
 
 import br.com.fiap.challenge.diner.adapter.driven.infra.mappers.PedidoPagamentoMapper;
 import br.com.fiap.challenge.diner.adapter.driver.request.SolicitarPagamentoRequest;
-import br.com.fiap.challenge.diner.adapter.driver.response.CategoriaResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.ErrorResponse;
+import br.com.fiap.challenge.diner.adapter.driver.response.SolicitarPagamentoResponse;
 import br.com.fiap.challenge.diner.core.application.services.PedidoPagamentoService;
-import br.com.fiap.fastfood.adapter.integration.MercadoPagoIntegration;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -36,17 +35,16 @@ public class PedidoPagamentoController {
 
     private final PedidoPagamentoService service;
     private final PedidoPagamentoMapper mapper;
-    private final MercadoPagoIntegration integration;
 
     @Operation(summary = "Solicitação de pagamento")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Solicitação de pagamento realizado com sucesso",
-                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = CategoriaResponse.class))})})
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = SolicitarPagamentoResponse.class))})})
     @PostMapping("/solicitar")
-    public ResponseEntity<CategoriaResponse> solicitarPagamento(
+    public ResponseEntity<SolicitarPagamentoResponse> solicitarPagamento(
             @RequestBody @Valid SolicitarPagamentoRequest request) {
         var requestDTO = mapper.toPedidoPagamentoDTO(request);
         var response = service.solicitarPagamento(requestDTO);
-        return ResponseEntity.status(CREATED).build();
+        return ResponseEntity.status(CREATED).body(response);
     }
 }

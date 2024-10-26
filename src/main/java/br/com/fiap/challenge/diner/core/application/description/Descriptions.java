@@ -44,6 +44,10 @@ public class Descriptions {
     public static final String BLOCO_CLIENTE = "Bloco de informações do cliente";
     public static final String VLR_TOTAL = "Valor total do pedido";
     public static final String STATUS_PEDIDO = "Status do pedido. Disponíveis: RECEBIDO, EM_PREPARACAO, PRONTO, FINALIZADO";
+    public static final String PEDIDO_ID = "Identificador único do pedido";
+    public static final String FORMA_PAGAMENTO_ID = "Identificador único da forma de pagamento";
+    public static final String QRCODE = "QRCode de pagamento";
+    public static final String IDENTIFICADOR_PAGAMENTO = "Identificado unico de pagamento";
 
     // Paginação
     public static final String HAS_NEXT = "Indica se existe uma próxima página com elementos";
