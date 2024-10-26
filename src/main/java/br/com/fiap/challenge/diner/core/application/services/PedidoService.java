@@ -2,7 +2,7 @@ package br.com.fiap.challenge.diner.core.application.services;
 
 import br.com.fiap.challenge.diner.adapter.driven.infra.mappers.PedidoMapper;
 import br.com.fiap.challenge.diner.adapter.driver.exception.BusinessException;
-import br.com.fiap.challenge.diner.adapter.driver.response.CategoriaResponse;
+import br.com.fiap.challenge.diner.adapter.driver.response.PedidoResponse;
 import br.com.fiap.challenge.diner.core.application.ports.*;
 import br.com.fiap.challenge.diner.core.domain.dto.ItemDTO;
 import br.com.fiap.challenge.diner.core.domain.dto.PedidoDTO;
@@ -31,7 +31,7 @@ public class PedidoService {
 
     private final PedidoMapper pedidoMapper;
 
-    public CategoriaResponse cadastrarPedido(PedidoDTO pedidoDTO) {
+    public PedidoResponse cadastrarPedido(PedidoDTO pedidoDTO) {
         var empresa = getEmpresa(pedidoDTO.getEmpresaId());
         var cliente = nonNull(pedidoDTO.getClienteId()) ? getCliente(pedidoDTO.getClienteId()) : null;
 
@@ -40,10 +40,11 @@ public class PedidoService {
         pedido.setCliente(cliente);
 
         getItensPedido(pedidoDTO.getItens(), pedido);
+        pedido.calculaVlrTotal();
 
         var pedidoResponse = pedidoRepository.save(pedido);
 
-        return null;
+        return pedidoMapper.toPedidoResponse(pedidoResponse);
     }
 
     private void getItensPedido(List<ItemDTO> itens, Pedido pedido) {
@@ -51,6 +52,8 @@ public class PedidoService {
             var produto = getProduto(item.getProdutoId());
             var itemPedido = pedido.addItem();
             itemPedido.setProduto(produto);
+            itemPedido.setQtdProduto(item.getQtdProduto());
+            itemPedido.setVlrUnitario(item.getVlrUnitario());
         });
     }
 

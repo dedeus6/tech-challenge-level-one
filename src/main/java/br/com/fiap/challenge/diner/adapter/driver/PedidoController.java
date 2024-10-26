@@ -2,8 +2,8 @@ package br.com.fiap.challenge.diner.adapter.driver;
 
 import br.com.fiap.challenge.diner.adapter.driven.infra.mappers.PedidoMapper;
 import br.com.fiap.challenge.diner.adapter.driver.request.CadastrarPedidoRequest;
-import br.com.fiap.challenge.diner.adapter.driver.response.CategoriaResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.ErrorResponse;
+import br.com.fiap.challenge.diner.adapter.driver.response.PedidoResponse;
 import br.com.fiap.challenge.diner.core.application.services.PedidoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -41,12 +41,13 @@ public class PedidoController {
     @Operation(summary = "Realizar Pedido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Pedido realizado com sucesso",
-                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = CategoriaResponse.class))})})
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PedidoResponse.class))})})
     @PostMapping
-    public ResponseEntity<CategoriaResponse> cadastrarPedido(
+    public ResponseEntity<PedidoResponse> cadastrarPedido(
             @RequestBody @Valid CadastrarPedidoRequest request) {
         var requestDTO = mapper.toPedidoDTO(request);
-        var response = service.cadastrarPedido(requestDTO);
-        return ResponseEntity.status(CREATED).build();
+        return ResponseEntity
+                .status(CREATED)
+                .body(service.cadastrarPedido(requestDTO));
     }
 }

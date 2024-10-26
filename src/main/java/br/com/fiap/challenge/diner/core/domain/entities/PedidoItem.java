@@ -1,5 +1,6 @@
 package br.com.fiap.challenge.diner.core.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,14 +18,19 @@ public class PedidoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
+
     @Column(name = "qtd_produto")
     private Long qtdProduto;
+
     @Column(name = "vlr_unitario")
     private Double vlrUnitario;
 }

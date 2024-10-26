@@ -24,22 +24,32 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime data;
+
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @Builder.Default
+    @Column(name = "vlr_total")
     private Double vlrTotal = 0.0;
+
     private String status;
+
     @OrderBy("id")
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "pedido", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PedidoPagamento> pagamentos = new ArrayList<>();
+
+    @Builder.Default
     @OrderBy("id")
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "pedido", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PedidoItem> itens = new ArrayList<>();
+
     private String observacao;
 
     public PedidoItem addItem() {

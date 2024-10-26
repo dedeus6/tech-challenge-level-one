@@ -16,4 +16,6 @@ public class CadastrarPedidoRequest {
     private Long clienteId;
     private Long empresaId;
     private List<ItemRequest> itens;
+    private String observacao;
+
 }
