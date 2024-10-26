@@ -4,10 +4,13 @@ import br.com.fiap.challenge.diner.adapter.driver.request.CadastrarPedidoRequest
 import br.com.fiap.challenge.diner.core.domain.dto.PedidoDTO;
 import br.com.fiap.challenge.diner.core.domain.entities.Pedido;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface PedidoMapper {
 
     PedidoDTO toPedidoDTO(CadastrarPedidoRequest request);
+
+    @Mapping(target = "itens", ignore = true)
     Pedido toPedidoEntidade(PedidoDTO pedidoDTO);
 }

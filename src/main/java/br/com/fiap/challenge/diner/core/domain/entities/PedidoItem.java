@@ -26,6 +26,5 @@ public class PedidoItem {
     @Column(name = "qtd_produto")
     private Long qtdProduto;
     @Column(name = "vlr_unitario")
-    private Double vlrUnitario = 0.0;
-    private String observacao;
+    private Double vlrUnitario;
 }

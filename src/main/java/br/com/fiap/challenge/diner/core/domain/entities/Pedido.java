@@ -55,4 +55,11 @@ public class Pedido {
         pagamentos.add(item);
         return item;
     }
+
+    public Double calculaVlrTotal() {
+        this.vlrTotal = this.itens.stream()
+                .mapToDouble(item -> item.getVlrUnitario() * item.getQtdProduto())
+                .sum();
+        return this.vlrTotal;
+    }
 }

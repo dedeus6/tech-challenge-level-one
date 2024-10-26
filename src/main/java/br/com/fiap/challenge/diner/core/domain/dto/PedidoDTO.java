@@ -1,6 +1,5 @@
 package br.com.fiap.challenge.diner.core.domain.dto;
 
-import br.com.fiap.challenge.diner.adapter.driver.request.ItemRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,9 +17,10 @@ public class PedidoDTO {
     private Long id;
     private Long clienteId;
     private Long empresaId;
-    private String status;
+    @Builder.Default
+    private String status = "RECEBIDO";
     private LocalDateTime data;
-    private List<ItemRequest> itens;
+    private List<ItemDTO> itens;
     private String observacao;
 
 }

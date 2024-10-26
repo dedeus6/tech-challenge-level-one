@@ -1,13 +1,6 @@
 package br.com.fiap.challenge.diner.core.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +19,7 @@ public class Produto {
     private Long id;
     private String descricao;
     @Column(name = "vlr_unitario")
-    private String vlrUnitario;
+    private Double vlrUnitario;
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;

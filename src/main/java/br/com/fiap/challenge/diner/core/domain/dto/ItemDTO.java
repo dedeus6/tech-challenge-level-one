@@ -1,4 +1,4 @@
-package br.com.fiap.challenge.diner.adapter.driver.request;
+package br.com.fiap.challenge.diner.core.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemRequest {
+public class ItemDTO {
 
+    private Long id;
     private Long produtoId;
+    private Long pedidoId;
     private Long qtdProduto;
     private Double vlrUnitario;
 
