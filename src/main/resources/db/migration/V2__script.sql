@@ -9,9 +9,7 @@ VALUES ('Razao Social 1', 'Nome Fantansia 1', '21833465000101', 'S'),
        ('Razao Social 2', 'Nome Fantansia 2', '80147108000140', 'S');
 
 INSERT INTO forma_pagamento(descricao, tipo_pagamento)
-VALUES ('CARTAO VISA - CREDITO', 'CREDITO'),
-       ('CARTAO VISA - DEBITO', 'DEBITO'),
-       ('PIX', 'PIX');
+VALUES ('QRCode - Mercado Pago', 'PIX');
 
 INSERT INTO cliente(nome, cpf, telefone, email)
 VALUES ('Cliente 1', '43478878683', null, null),

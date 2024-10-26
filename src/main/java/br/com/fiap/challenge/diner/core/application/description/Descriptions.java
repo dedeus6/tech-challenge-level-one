@@ -31,11 +31,13 @@ public class Descriptions {
     public static final String CATEGORIA_PRODUTO = "Categoria associada ao produto";
     public static final String CATEGORIA_ID = "Identificar único da categoria";
     public static final String IMAGEM_PRODUTO = "Imagem para mostrar o produto";
+    public static final String DESCRICAO_FORMA_PAGAMENTO = "Descrição forma de pagamento";
+    public static final String TIPO_PAGAMENTO_FORMA_PAGAMENTO = "Tipo forma de pagamento. Valores permitidos [\"DEBITO\", \"CREDITO\", \"PIX\"]";
 
     // Paginação
     public static final String HAS_NEXT = "Indica se existe uma próxima página com elementos";
     public static final String HAS_PREVIOUS = "Indica se existe uma página anterior";
-    public static final String PAGE_NUMBER = "Indica o número da página atual";
-    public static final String PAGE_SIZE = "Indica a quantidade de elementos na página atual";
+    public static final String PAGE_NUMBER = "Número da página atual";
+    public static final String PAGE_SIZE = "Quantidade de elementos na página atual";
     public static final String ITEMS = "Lista de items da página";
 }
