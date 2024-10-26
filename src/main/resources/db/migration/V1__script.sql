@@ -16,7 +16,7 @@ tipo_pagamento TEXT,
 CONSTRAINT forma_pagamento_pkey PRIMARY KEY (id)
 );
 
-COMMENT ON COLUMN public.forma_pagamento.tipo_pagamento IS 'AVISTA/DEBITO/CREDITO/PIX';
+COMMENT ON COLUMN public.forma_pagamento.tipo_pagamento IS 'DEBITO/CREDITO/PIX';
 
 CREATE TABLE IF NOT EXISTS public.cliente (
 id bigserial NOT NULL,
