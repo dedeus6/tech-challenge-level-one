@@ -23,6 +23,7 @@ import static br.com.fiap.challenge.diner.core.application.errors.Errors.CLIENTE
 import static br.com.fiap.challenge.diner.core.application.errors.Errors.EMPRESA_NAO_ENCONTRADA;
 import static br.com.fiap.challenge.diner.core.application.errors.Errors.PRODUTO_NAO_ENCONTRADO;
 import static br.com.fiap.challenge.diner.core.application.utils.Numbers.isEmpty;
+import static br.com.fiap.challenge.diner.core.application.utils.Numbers.isNonEmpty;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 @Service
@@ -39,7 +40,7 @@ public class PedidoService {
 
     public PedidoResponse cadastrarPedido(PedidoDTO pedidoDTO) {
         var empresa = getEmpresa(pedidoDTO.getEmpresaId());
-        var cliente = isEmpty(pedidoDTO.getClienteId()) ? getCliente(pedidoDTO.getClienteId()) : null;
+        var cliente = isNonEmpty(pedidoDTO.getClienteId()) ? getCliente(pedidoDTO.getClienteId()) : null;
 
         var pedido = pedidoMapper.toPedidoEntidade(pedidoDTO);
         pedido.setEmpresa(empresa);
