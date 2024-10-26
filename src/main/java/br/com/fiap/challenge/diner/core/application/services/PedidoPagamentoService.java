@@ -48,8 +48,13 @@ public class PedidoPagamentoService {
 
         var formaPagamento = this.getFormaPagamento(requestDTO.getFormaPagamentoId());
         var solicitacaoPagamento = solicitarPagamento(formaPagamento.getTipoPagamento(), pedido.getVlrTotal());
+        pedidoPagamentoRepository.save(getPedidoPagamento(formaPagamento, pedido, solicitacaoPagamento));
 
+        threadSimuladorPagamento(requestDTO);
+        return solicitacaoPagamento;
+    }
 
+    private static PedidoPagamento getPedidoPagamento(FormaPagamento formaPagamento, Pedido pedido, SolicitarPagamentoResponse solicitacaoPagamento) {
         PedidoPagamento pedidoPagamento = PedidoPagamento.builder()
                 .formaPagamento(formaPagamento)
                 .pedido(pedido)
@@ -57,12 +62,7 @@ public class PedidoPagamentoService {
                 .status(StatusPedidoPagamento.PENDENTE.getValor())
                 .identificadorPagamento(solicitacaoPagamento.getIdentificadorPagamento())
                 .build();
-        pedidoPagamentoRepository.save(pedidoPagamento);
-
-        //construir thread para atualizar o pagamento
-        threadSimuladorPagamento(requestDTO);
-
-        return solicitacaoPagamento;
+        return pedidoPagamento;
     }
 
     private void threadSimuladorPagamento(SolicitarPagamentoDTO requestDTO) {
@@ -79,6 +79,7 @@ public class PedidoPagamentoService {
 
             pedido.getPagamentos().forEach(i -> i.setStatus(StatusPedidoPagamento.CONFIRMADO.getValor()));
             pedido.setStatus(StatusPedido.EM_PREPARACAO.getValor());
+            pedidoRepository.save(pedido);
         };
 
         Thread thread = new Thread(task);
