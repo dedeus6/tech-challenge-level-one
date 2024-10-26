@@ -21,6 +21,9 @@ public class Errors {
     //Paginação
     public static final String PAGE_MINIMA = "Página miníma é 1";
 
+    // Cliente
+    public static final String CLIENTE_NAO_ENCONTRADO = "Cliente não encontrado";
+
     public static final String ENUM_ATIVO_INVALIDO = "O valor informado está invalido. Valores permitidos [S, N]";
 
 }

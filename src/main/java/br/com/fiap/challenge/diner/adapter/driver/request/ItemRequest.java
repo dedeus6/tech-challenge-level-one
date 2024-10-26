@@ -5,15 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CadastrarPedidoRequest {
+public class ItemRequest {
 
-    private Long clienteId;
-    private Long empresaId;
-    private List<ItemRequest> itens;
+    private Long produtoId;
+    private Long qtdProduto;
+
 }

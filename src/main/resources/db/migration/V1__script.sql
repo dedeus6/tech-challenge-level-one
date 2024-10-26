@@ -51,6 +51,7 @@ data timestamp NOT NULL,
 empresa_id bigint NOT NULL,
 cliente_id bigint,
 status TEXT NOT NULL DEFAULT 'R',
+observacao TEXT,
 CONSTRAINT pedido_pkey PRIMARY KEY (id),
 CONSTRAINT fk_pedido_empresa_id FOREIGN KEY (empresa_id) REFERENCES public.empresa(id),
 CONSTRAINT fk_pedido_cliente_id FOREIGN KEY (cliente_id) REFERENCES public.cliente(id)
@@ -63,25 +64,20 @@ id bigserial NOT NULL,
 forma_pagamento_id bigint NOT NULL,
 pedido_id bigint NOT NULL,
 vlr_pagamento NUMERIC(12,2) NOT NULL,
-confirmado TEXT NOT NULL DEFAULT 'N',
+status TEXT NOT NULL DEFAULT 'PENDENTE',
 observacao TEXT,
 CONSTRAINT pedido_pagamento_pkey PRIMARY KEY (id),
 CONSTRAINT fk_pedido_pagamento_forma_pagamento_id FOREIGN KEY (forma_pagamento_id) REFERENCES public.forma_pagamento(id),
 CONSTRAINT fk_pedido_pagamento_pedido_id FOREIGN KEY (pedido_id) REFERENCES public.pedido(id)
 );
 
-COMMENT ON COLUMN public.pedido_pagamento.confirmado IS 'S=SIM/N=NAO';
+COMMENT ON COLUMN public.pedido_pagamento.status IS 'PENDENTE/CONFIRMADO/RECUSADO';
 
 CREATE TABLE IF NOT EXISTS public.pedido_item (
 id bigserial NOT NULL,
 produto_id bigint NOT NULL,
 pedido_id bigint NOT NULL,
 qtd_produto bigint,
-vlr_unitario NUMERIC(15,2) DEFAULT 0.0 NOT NULL,
-vlr_desconto NUMERIC(15,2) DEFAULT 0.0 NOT NULL,
-vlr_bruto NUMERIC(15,2) DEFAULT 0.0 NOT NULL,
-vlr_liquido NUMERIC(15,2) DEFAULT 0.0 NOT NULL,
-observacao TEXT,
 CONSTRAINT pedido_item_pkey PRIMARY KEY (id),
 CONSTRAINT fk_pedido_item_produto_id FOREIGN KEY (produto_id) REFERENCES public.produto(id),
 CONSTRAINT fk_pedido_item_pedido_id FOREIGN KEY (pedido_id) REFERENCES public.pedido(id)

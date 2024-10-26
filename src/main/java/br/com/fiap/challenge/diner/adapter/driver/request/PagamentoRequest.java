@@ -5,15 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CadastrarPedidoRequest {
+public class PagamentoRequest {
 
-    private Long clienteId;
-    private Long empresaId;
-    private List<ItemRequest> itens;
+    private Long formaPagamentoId;
+    private BigDecimal vlrPagamento;
+
 }
