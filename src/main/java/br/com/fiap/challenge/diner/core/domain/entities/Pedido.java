@@ -1,5 +1,6 @@
 package br.com.fiap.challenge.diner.core.domain.entities;
 
+import br.com.fiap.challenge.diner.adapter.driver.exception.BusinessException;
 import br.com.fiap.challenge.diner.core.application.utils.Numbers;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,9 @@ import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import static br.com.fiap.challenge.diner.core.application.errors.Errors.STATUS_INVALIDO;
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 @Data
 @Entity
@@ -84,6 +88,14 @@ public class Pedido {
             case "P" -> "PRONTO";
             case "F" -> "FINALIZADO";
             default -> "INVÁLIDO";
+        };
+    }
+
+    public String getNextStatus() {
+        return switch (this.status) {
+            case "E" -> "P";
+            case "P" -> "F";
+            default -> throw new BusinessException(STATUS_INVALIDO, UNPROCESSABLE_ENTITY);
         };
     }
 

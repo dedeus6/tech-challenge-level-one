@@ -26,6 +26,7 @@ public class Errors {
     public static final String FORMA_PAGAMENTO_NAO_DISPONIVEL = "Forma de pagamento não está disponível";
     public static final String PEDIDO_STATUS_DIFERENTE_RECEBIDO = "Status do pedido é diferente de recebido";
     public static final String LISTA_ITENS_DEVE_TER_UM_ELEMENTO = "A lista de itens deve conter pelo menos um elemento";
+    public static final String STATUS_INVALIDO = "O pedido deve estar em preparção para ir para pronto ou pronto para ir para finalizado.";
 
     // Paginação
     public static final String PAGE_MINIMA = "Página miníma é 1";
@@ -35,6 +36,5 @@ public class Errors {
 
     //ENUMS
     public static final String ENUM_ATIVO_INVALIDO = "O valor informado está invalido. Valores permitidos [S, N]";
-    public static final String ENUM_TIPO_PAGAMNETO_INVALIDO = "O valor informado está invalido. Valores permitidos [DEBITO, CREDITO, PIX]";
 
 }

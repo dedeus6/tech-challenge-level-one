@@ -48,9 +48,15 @@ public class PedidoService {
     }
 
     public PedidoResponse buscarPedidoPorId(Long id) {
-        var entity = pedidoRepository.findById(id)
-                .orElseThrow(() -> new BusinessException(PEDIDO_NAO_ENCONTRADO, UNPROCESSABLE_ENTITY));
+        var entity = getPedido(id);
         return pedidoMapper.toPedidoResponse(entity);
+    }
+
+    public PedidoResponse atualizaStatusPedido(Long id) {
+        var pedido = getPedido(id);
+        pedido.setStatus(pedido.getNextStatus());
+        var pedidoResponse = pedidoRepository.save(pedido);
+        return pedidoMapper.toPedidoResponse(pedidoResponse);
     }
 
     private void getItensPedido(List<ItemDTO> itens, Pedido pedido) {
@@ -61,6 +67,11 @@ public class PedidoService {
             itemPedido.setQtdProduto(item.getQtdProduto());
             itemPedido.setVlrUnitario(item.getVlrUnitario());
         });
+    }
+
+    private Pedido getPedido(Long id) {
+        return pedidoRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(PEDIDO_NAO_ENCONTRADO, UNPROCESSABLE_ENTITY));
     }
 
     private Produto getProduto(Long id) {

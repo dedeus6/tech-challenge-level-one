@@ -63,4 +63,17 @@ public class PedidoController {
         var response = service.buscarPedidoPorId(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @Operation(summary = "Atualiza status do pedido")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Atualização realizada com sucesso",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PedidoResponse.class))})})
+    @PatchMapping("/status/{id}")
+    public ResponseEntity<?> atualizaStatusPedido(
+            @Parameter(description = ID)
+            @PathVariable(name = "id")
+            final Long id) {
+        var response = service.atualizaStatusPedido(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
