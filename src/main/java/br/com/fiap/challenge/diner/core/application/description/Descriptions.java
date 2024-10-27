@@ -48,6 +48,8 @@ public class Descriptions {
     public static final String FORMA_PAGAMENTO_ID = "Identificador único da forma de pagamento";
     public static final String QRCODE = "QRCode de pagamento";
     public static final String IDENTIFICADOR_PAGAMENTO = "Identificado unico de pagamento";
+    public static final String VLR_PAGAMENTO = "Valor do pagamento feito";
+    public static final String STATUS_PAGAMENTO = "Status do pagamento feito. Disponíveis: PENDENTE, CONFIRMADO, RECUSADO";
 
     // Paginação
     public static final String HAS_NEXT = "Indica se existe uma próxima página com elementos";

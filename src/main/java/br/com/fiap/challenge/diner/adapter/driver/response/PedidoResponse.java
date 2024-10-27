@@ -42,6 +42,8 @@ public class PedidoResponse {
     @Schema(description = LISTA_ITENS_PEDIDO)
     private List<PedidoItemResponse> itens;
 
+    private List<PedidoPagamentoResponse> pagamentos;
+
     @Schema(description = OBSERVACAO)
     private String observacao;
 

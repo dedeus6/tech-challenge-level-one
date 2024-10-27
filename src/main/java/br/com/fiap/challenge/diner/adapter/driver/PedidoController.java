@@ -6,6 +6,7 @@ import br.com.fiap.challenge.diner.adapter.driver.response.ErrorResponse;
 import br.com.fiap.challenge.diner.adapter.driver.response.PedidoResponse;
 import br.com.fiap.challenge.diner.core.application.services.PedidoService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,13 +14,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import static br.com.fiap.challenge.diner.core.application.description.Descriptions.ID;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @Validated
@@ -49,5 +49,18 @@ public class PedidoController {
         return ResponseEntity
                 .status(CREATED)
                 .body(service.cadastrarPedido(requestDTO));
+    }
+
+    @Operation(summary = "Buscar pedido")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PedidoResponse.class))})})
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPedido(
+            @Parameter(description = ID)
+            @PathVariable(name = "id")
+            final Long id) {
+        var response = service.buscarPedidoPorId(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

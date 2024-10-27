@@ -3,11 +3,7 @@ package br.com.fiap.challenge.diner.core.application.services;
 import br.com.fiap.challenge.diner.adapter.driven.infra.mappers.PedidoMapper;
 import br.com.fiap.challenge.diner.adapter.driver.exception.BusinessException;
 import br.com.fiap.challenge.diner.adapter.driver.response.PedidoResponse;
-import br.com.fiap.challenge.diner.core.application.ports.ClienteRepository;
-import br.com.fiap.challenge.diner.core.application.ports.EmpresaRepository;
-import br.com.fiap.challenge.diner.core.application.ports.PedidoItemRepository;
-import br.com.fiap.challenge.diner.core.application.ports.PedidoRepository;
-import br.com.fiap.challenge.diner.core.application.ports.ProdutoRepository;
+import br.com.fiap.challenge.diner.core.application.ports.*;
 import br.com.fiap.challenge.diner.core.domain.dto.ItemDTO;
 import br.com.fiap.challenge.diner.core.domain.dto.PedidoDTO;
 import br.com.fiap.challenge.diner.core.domain.entities.Cliente;
@@ -19,10 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.com.fiap.challenge.diner.core.application.errors.Errors.CLIENTE_NAO_ENCONTRADO;
-import static br.com.fiap.challenge.diner.core.application.errors.Errors.EMPRESA_NAO_ENCONTRADA;
-import static br.com.fiap.challenge.diner.core.application.errors.Errors.PRODUTO_NAO_ENCONTRADO;
-import static br.com.fiap.challenge.diner.core.application.utils.Numbers.isEmpty;
+import static br.com.fiap.challenge.diner.core.application.errors.Errors.*;
 import static br.com.fiap.challenge.diner.core.application.utils.Numbers.isNonEmpty;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
@@ -54,6 +47,12 @@ public class PedidoService {
         return pedidoMapper.toPedidoResponse(pedidoResponse);
     }
 
+    public PedidoResponse buscarPedidoPorId(Long id) {
+        var entity = pedidoRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(PEDIDO_NAO_ENCONTRADO, UNPROCESSABLE_ENTITY));
+        return pedidoMapper.toPedidoResponse(entity);
+    }
+
     private void getItensPedido(List<ItemDTO> itens, Pedido pedido) {
         itens.forEach(item -> {
             var produto = getProduto(item.getProdutoId());
@@ -78,4 +77,5 @@ public class PedidoService {
         return clienteRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(CLIENTE_NAO_ENCONTRADO, UNPROCESSABLE_ENTITY));
     }
+
 }
