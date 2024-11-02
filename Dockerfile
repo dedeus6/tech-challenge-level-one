@@ -1,11 +1,18 @@
-FROM amazoncorretto:21-alpine-jdk
+FROM maven:eclipse-temurin AS build
 
-RUN apt-get update && apt-get install -qq -y --no-install-recommends
+WORKDIR /app
 
-ENV INSTALL_PATH /tech-challenge-level-one
+COPY pom.xml .
+COPY src ./src
 
-RUN mkdir $INSTALL_PATH
+RUN mvn clean package -DskipTests
 
-WORKDIR $INSTALL_PATH
+FROM eclipse-temurin:21-jdk
 
-COPY . .
+WORKDIR /app
+
+COPY --from=build /app/target/fast-food-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

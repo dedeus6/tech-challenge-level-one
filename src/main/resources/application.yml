@@ -5,15 +5,12 @@ spring:
   application:
     name: fast-food
   datasource:
-    url: jdbc:postgresql://localhost:5443/fast-food
-    username: postgres
-    password: postgres
-    #initialization-mode: always  # Garante que o Spring execute o script
-    #initialization-sql: classpath:script.sql  # Localiza o arquivo init.sql
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/fast-food}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
   flyway:
     enabled: true
-    url: jdbc:postgresql://localhost:5443/fast-food
-    user: postgres
-    password: postgres
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/fast-food}
+    user: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
     locations: classpath:db/migration
-
